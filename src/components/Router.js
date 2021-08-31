@@ -3,28 +3,25 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Auth from '../routes/Auth';
 import Home from '../routes/Home';
 
-const Router = () => {
-  const [login, setLogin] = useState(false);
+const AppRouter = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <Route>
+    <Router>
       <Switch>
-        {login ? (
-          <>
-            {/* 많은 엘리먼트 사용할대 플레그 먼트 */}
-            <Route exact path="/"></Route> {/* 홈화면 */}
-          </>
-        ) : (
-          <Route exact path="/">
-            <Auth /> {/*login */}
-          </Route>
-        )}
+      {isLoggedIn ? (
+        <Route exact path = "/">
+          <Home />
+        </Route>
+      ) : (
+        <Route exact path = "/">
+          <Auth />
+        </Route>
+      )}
       </Switch>
-    </Route>
+    </Router>
   );
 };
 
-export default Router;
-{
-  /* 우리가 렌더시킬 routes 로그인 여부에따라 달라질것이다 */
-}
+export default AppRouter;
+
 

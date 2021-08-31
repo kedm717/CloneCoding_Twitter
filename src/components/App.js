@@ -1,11 +1,15 @@
-import React from 'react';
+import AppRouter from './Router';
+import {useState} from 'react'
+
 
 function App(){
+  const {isLoggedIn, setIsLoggedIn} = useState(false);
   return (
-    <div>
-      
-    </div>
-  );
+  <>
+  <AppRouter isLoggedIn = {isLoggedIn}/>
+  <footer>& copy; {new Date().getFullYear()} dongchanTwitter</footer> 
+  </>
+    );
 };
 
 export default App;
