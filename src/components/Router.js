@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Auth from '../routes/Auth';
-import Home from '../routes/Home';
+import Auth from 'routes/Auth';
+import Home from 'routes/Home';
 
-const AppRouter = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const AppRouter = ({isLoggedIn}) => { /*상위 컴포넌트에서 받은 프롭스는 구조분해 할당으로 사용*/
   return (
     <Router>
       <Switch>
