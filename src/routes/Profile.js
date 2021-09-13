@@ -1,4 +1,4 @@
-import {authService} from "firebase";
+import { authService } from "../firebase";
 import { useHistory } from "react-router-dom";
 
 const Profile = () => {
