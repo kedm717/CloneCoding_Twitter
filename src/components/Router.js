@@ -1,11 +1,11 @@
-import { HashRouter as Router,Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Auth from 'routes/Auth';
 import Home from 'routes/Home';
 import Profile from 'routes/Profile';
 import Navigation from './Navigation';
 
 
-const AppRouter = ({isLoggedIn}) => { /*상위 컴포넌트에서 받은 프롭스는 구조분해 할당으로 사용*/
+const AppRouter = ({isLoggedIn, userObj}) => { /*상위 컴포넌트에서 받은 프롭스는 구조분해 할당으로 사용*/
   
   return (
     <Router>
@@ -14,7 +14,7 @@ const AppRouter = ({isLoggedIn}) => { /*상위 컴포넌트에서 받은 프롭�
       {isLoggedIn ? (
         <>
         <Route exact={true} path = "/">
-          <Home />
+          <Home userObj={userObj}/>
         </Route>
         <Route exact={true} path = "/profile">
         <Profile/>
@@ -25,7 +25,7 @@ const AppRouter = ({isLoggedIn}) => { /*상위 컴포넌트에서 받은 프롭�
           <Auth />
         </Route>
       )}
-      <Redirect from ="*" to = "/"/>
+      
       </Switch>
     </Router>
   );
