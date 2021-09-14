@@ -1,5 +1,6 @@
 import { useEffect,useState} from 'react';
 import { dbService } from 'firebase';
+import Tweet from "components/Tweet";
 
 const Home = ({userObj}) => {
     
@@ -8,13 +9,13 @@ const Home = ({userObj}) => {
 
     
     useEffect(()=>{
-        dbService.collection.apply("tweet").onSnapshot((snapshot)=>{
+        dbService.collection("tweets").onSnapshot((snapshot)=>{
             const newArray = snapshot.docs.map((document)=>({
                 id: document.id,
                 ...document.data(),
             }));
-            setTweet(newArray);
-        })
+            setTweets(newArray);
+        });
     },[]);
 
     
@@ -50,9 +51,10 @@ const Home = ({userObj}) => {
       </form>
       <div>
         {tweets.map((tweet)=>( //트윗 목록이 보이는 맵핑!
-            <div key ={tweet.id}>
-                <h4>{tweet.text}</h4>
-            </div>
+        // Tweet.js로 연결
+            <Tweet key={tweet.id} tweetObj = {tweet}
+            isOwner ={tweet.creatorId === userObj.uid}
+            />
         ))}
       </div>
       </>
