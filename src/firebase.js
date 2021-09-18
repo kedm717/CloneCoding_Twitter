@@ -1,6 +1,7 @@
 import  firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore"
+import "firebase/compat/storage"; // 스토리지 임포트
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -17,4 +18,5 @@ const firebaseConfig = {
   export const firebaseInstance = firebase;
   export const dbService = firebase.firestore();
   export const authService = firebase.auth(); 
+  export const storageService = firebase.storage();
   
