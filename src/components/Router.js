@@ -9,7 +9,7 @@ const AppRouter = ({isLoggedIn, userObj}) => { /*상위 컴포넌트에서 받�
   
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Switch>
       {isLoggedIn ? (
         <>
