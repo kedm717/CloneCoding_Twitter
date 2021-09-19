@@ -17,7 +17,7 @@ const AppRouter = ({isLoggedIn, userObj}) => { /*상위 컴포넌트에서 받�
           <Home userObj={userObj}/>
         </Route>
         <Route exact={true} path = "/profile">
-        <Profile/>
+        <Profile userObj= {userObj} />
       </Route>
       </>
       ) : (
