@@ -6,8 +6,6 @@ import { authService } from "../firebase";
 
 
 
-
-
 function App(){
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,8 +15,11 @@ function App(){
   useEffect(()=>{
     authService.onAuthStateChanged((user) =>{
       if(user){
-        setIsLoggedIn(user);
-        setUserObj(user);
+        setUserObj({
+          uid: user.uid,
+          displayName : user.displayName,
+          updateProfile: (args)=> user.updateProfile(args),
+        });
       }
       else {
         setIsLoggedIn(false);
@@ -27,10 +28,23 @@ function App(){
     });
 
   },[]);
+
+  const refreshUser = () => { // 함수가 실행되면 인증 모듈에서 authService.currentUser를 통해 얻은 새 user를 업데이트 해줌.
+   const user = authService.currentUser;
+   setUserObj({
+     uid: user.uid,
+     displayName: user.displayName,
+     updateProfile: (args) => user.updateProfile(args),
+   })
+  }
   
   return (
   <>
-  { init ? <AppRouter isLoggedIn ={isLoggedIn} userObj ={userObj} /> : "initializing..."}
+  { init ? <AppRouter 
+  isLoggedIn ={Boolean(userObj)} 
+  userObj ={userObj} 
+  refreshUser ={refreshUser}
+  /> : "initializing..."}
   </>
   );
 }

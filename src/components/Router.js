@@ -5,7 +5,7 @@ import Profile from 'routes/Profile';
 import Navigation from './Navigation';
 
 
-const AppRouter = ({isLoggedIn, userObj}) => { /*상위 컴포넌트에서 받은 프롭스는 구조분해 할당으로 사용*/
+const AppRouter = ({isLoggedIn, userObj, refreshUser}) => { /*상위 컴포넌트에서 받은 프롭스는 구조분해 할당으로 사용*/
   
   return (
     <Router>
@@ -17,7 +17,7 @@ const AppRouter = ({isLoggedIn, userObj}) => { /*상위 컴포넌트에서 받�
           <Home userObj={userObj}/>
         </Route>
         <Route exact={true} path = "/profile">
-        <Profile userObj= {userObj} />
+        <Profile refreshUser={refreshUser} userObj= {userObj} />
       </Route>
       </>
       ) : (
