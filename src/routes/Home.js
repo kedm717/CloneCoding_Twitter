@@ -11,7 +11,7 @@ const Home = ({userObj}) => {
   
     
     useEffect(()=>{
-        dbService.collection("tweets").onSnapshot((snapshot)=>{
+        dbService.collection("tweets").onderBy("creatAt", "desc").onSnapshot((snapshot)=>{
             const newArray = snapshot.docs.map((document)=>({
                 id: document.id,
                 ...document.data(),
@@ -24,9 +24,11 @@ const Home = ({userObj}) => {
    
 
     return (
-        <>
+        <div className="container">
         <TweetFactory userObj ={userObj}/>
-      <div>
+      <div style={{
+          marginTop :30
+      }}>
         {tweets.map((tweet)=>( //트윗 목록이 보이는 맵핑!
         // Tweet.js로 연결
             <Tweet key={tweet.id} tweetObj = {tweet}
@@ -34,7 +36,7 @@ const Home = ({userObj}) => {
             />
         ))}
       </div>
-      </>
+      </div>
     );
 };
 
